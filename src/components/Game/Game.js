@@ -5,6 +5,8 @@ import { WORDS } from '../../data';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 import GameInput from '../GameInput';
 import Guess from '../Guess';
+import WonBanner from '../WonBanner';
+import LostBanner from '../LostBanner';
 import GameBanner from '../GameBanner';
 
 // Pick a random word on every pageload.
@@ -32,16 +34,19 @@ function Game() {
   }
 
   return <>
-    {range(0, NUM_OF_GUESSES_ALLOWED).map(({value}, index) => (
+    {range(NUM_OF_GUESSES_ALLOWED).map((value, index) => (
       <Guess key={index}
         guess={guesses.length > index ? guesses[index].value : undefined}
         answer={answer} 
       />
     ))}
-    <GameBanner status={status} guesses={guesses} answer={answer} />
-    { status === 'playing' &&
-      <GameInput addGuess={addGuess} />
+    {status === 'won' && 
+      <WonBanner numGuesses={guesses.length} />
     }
+    {status === 'lost' && 
+      <LostBanner answer={answer} />
+    }
+    <GameInput status={status} addGuess={addGuess} />
     </>;
 }
 

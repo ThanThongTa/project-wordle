@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GameInput({addGuess}) {
+function GameInput({addGuess, status}) {
   const handleGuess = (event) => {
     event.preventDefault();
     addGuess(event.target[0].value.toUpperCase());
@@ -13,6 +13,7 @@ function GameInput({addGuess}) {
       id="guess-input" 
       type="text" 
       required
+      disabled={status !== 'playing'}
       minLength={5}
       maxLength={5}
       pattern="[a-zA-Z]{5}"
