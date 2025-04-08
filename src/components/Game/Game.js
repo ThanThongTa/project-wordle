@@ -4,7 +4,6 @@ import { sample, range } from '../../utils';
 import { WORDS } from '../../data';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 import GameInput from '../GameInput';
-import GameResults from '../GameResults';
 import Guess from '../Guess';
 import GameBanner from '../GameBanner';
 
