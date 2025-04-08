@@ -1,22 +1,17 @@
 import React from 'react';
 
-function GameInput() {
-  const [guess, setGuess] = React.useState('');
-
+function GameInput({addGuess}) {
   const handleGuess = (event) => {
     event.preventDefault();
-    const nextGuess = event.target.value.toUpperCase();
-    setGuess(nextGuess);
-    console.log(nextGuess);
+    addGuess(event.target[0].value.toUpperCase());
+    event.target[0].value = '';
   }
 
-  return <form className="guess-input-wrapper">
+  return <form className="guess-input-wrapper" onSubmit={handleGuess}>
     <label htmlFor="guess-input">Enter guess:</label>
     <input 
       id="guess-input" 
       type="text" 
-      value={guess} 
-      onChange={handleGuess}
       required
       minLength={5}
       maxLength={5}
